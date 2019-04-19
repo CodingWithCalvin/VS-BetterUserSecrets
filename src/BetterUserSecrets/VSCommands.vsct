@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<Extern href="stdidcmd.h"/>
+	<Extern href="vsshlids.h"/>
+
+	<Commands package="guidPackage">
+		<Buttons>
+			<Button guid="guidBUSCmdSet" id="BUSId" priority="0x0100" type="Button">
+				<Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_FOLDER_EXPLORE" />
+				<!--<Icon guid="guidIcons" id="BUSIcon" />-->
+				<Strings>
+					<ButtonText>Better Manage User Secrets</ButtonText>
+				</Strings>
+			</Button>
+		</Buttons>
+
+		<!--<Bitmaps>
+			<Bitmap guid="guidIcons" usedList="BUSIcon" href="Resources/logo.png" />
+		</Bitmaps>-->
+	</Commands>
+
+	<CommandPlacements>
+		<CommandPlacement guid="guidBUSCmdSet" id="BUSId" priority="0x0500">
+			<Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_EXPLORE"/>
+		</CommandPlacement>
+	</CommandPlacements>
+
+	<Symbols>
+		<!-- This is the package guid. -->
+		<GuidSymbol name="guidPackage" value="{715d713d-7df8-47d8-b8df-9ac1501914e2}" />
+
+		<GuidSymbol name="guidBUSCmdSet" value="{23234085-9ecc-48a5-99f2-8addb95dab56}">
+			<IDSymbol name="BUSId" value="0x0100" />
+		</GuidSymbol>
+
+		<!--<GuidSymbol name="guidIcons" value="{6377c0b9-91ee-43f7-ba31-78df9ffe78cf}">
+			<IDSymbol name="BUSIcon" value="1" />
+		</GuidSymbol>-->
+	</Symbols>
+</CommandTable>
