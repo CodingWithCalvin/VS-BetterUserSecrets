@@ -7,12 +7,12 @@ namespace BetterUserSecrets
 {
     internal sealed partial class Vsix
     {
-        public const string Id = "BetterUserSecrets.d7496248-7dc7-4b20-b697-d4965920f227";
+        public const string Id = "d7496248-7dc7-4b20-b697-d4965920f227";
         public const string Name = "Better User Secrets";
-        public const string Description = @"Empty VSIX Project.";
+        public const string Description = @"This extension allows you to manage User Secrets for any .NET Standard / .NET Core project type.  It exists because, by default, Visual Studio only allows management against Web projects - even though it works on others!This extension allows you to manage";
         public const string Language = "en-US";
         public const string Version = "1.0";
         public const string Author = "Calvin A. Allen";
-        public const string Tags = "";
+        public const string Tags = "coding, other, programming languages";
     }
 }

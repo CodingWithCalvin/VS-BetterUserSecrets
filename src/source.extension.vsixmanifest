@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="BetterUserSecrets.d7496248-7dc7-4b20-b697-d4965920f227" Version="1.0" Language="en-US" Publisher="Calvin A. Allen" />
+        <Identity Id="d7496248-7dc7-4b20-b697-d4965920f227" Version="1.0" Language="en-US" Publisher="Calvin A. Allen" />
         <DisplayName>Better User Secrets</DisplayName>
-        <Description xml:space="preserve">Empty VSIX Project.</Description>
+        <Description xml:space="preserve">This extension allows you to manage User Secrets for any .NET Standard / .NET Core project type.  It exists because, by default, Visual Studio only allows management against Web projects - even though it works on others!This extension allows you to manage</Description>
+        <MoreInfo>https://github.com/CalvinAllen/better-user-secrets</MoreInfo>
+        <License>Resources\LICENSE</License>
+        <Icon>Resources\Icon.png</Icon>
+        <Tags>coding, other, programming languages</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />

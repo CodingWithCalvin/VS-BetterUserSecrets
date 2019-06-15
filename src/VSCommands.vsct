@@ -6,18 +6,18 @@
 
 	<Commands package="guidPackage">
 		<Buttons>
-			<Button guid="guidBUSCmdSet" id="BUSId" priority="0x0100" type="Button">
-				<Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_FOLDER_EXPLORE" />
-				<!--<Icon guid="guidIcons" id="BUSIcon" />-->
+			<Button guid="guidBUSCmdSet" id="BUSId" priority="0x0500" type="Button">
+				<Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_ADD" />
+				<Icon guid="guidIcons" id="BUSIcon" />
 				<Strings>
 					<ButtonText>Better Manage User Secrets</ButtonText>
 				</Strings>
 			</Button>
 		</Buttons>
 
-		<!--<Bitmaps>
-			<Bitmap guid="guidIcons" usedList="BUSIcon" href="Resources/logo.png" />
-		</Bitmaps>-->
+		<Bitmaps>
+			<Bitmap guid="guidIcons" usedList="BUSIcon" href="Resources/Logo.png" />
+		</Bitmaps>
 	</Commands>
 
 	<CommandPlacements>
@@ -34,8 +34,8 @@
 			<IDSymbol name="BUSId" value="0x0100" />
 		</GuidSymbol>
 
-		<!--<GuidSymbol name="guidIcons" value="{6377c0b9-91ee-43f7-ba31-78df9ffe78cf}">
+		<GuidSymbol name="guidIcons" value="{6377c0b9-91ee-43f7-ba31-78df9ffe78cf}">
 			<IDSymbol name="BUSIcon" value="1" />
-		</GuidSymbol>-->
+		</GuidSymbol>
 	</Symbols>
 </CommandTable>
