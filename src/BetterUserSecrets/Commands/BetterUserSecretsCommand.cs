@@ -1,8 +1,12 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft;
@@ -50,7 +54,7 @@ namespace BetterUserSecrets.Commands
                 var userSecretsId = GetOrUpdateProject(service);
 
                 var secretsFile = GetOrCreateSecretsFile(userSecretsId, service);
-
+                
                 service.ItemOperations.OpenFile(secretsFile);
             }
             catch (Exception ex)
@@ -71,24 +75,46 @@ namespace BetterUserSecrets.Commands
                 throw new ArgumentException("Selected Item is not Project File");
             }
 
-            var projectXml = new XmlDocument();
-            projectXml.Load(project.FullName);
-
-            var frameworkNode = projectXml.SelectSingleNode("/Project/PropertyGroup/TargetFramework");
-            var userSecretsId = projectXml.SelectSingleNode("/Project/PropertyGroup/UserSecretsId/text()")?.Value;
-            var propGroupNode = frameworkNode?.ParentNode;
-
-            //couldn't find the TargetFramework node which we want to put the UserSecretsId in.
-            if (propGroupNode == null)
+            //let's see if we can find a pre-existing node for UserSecretsId
+            XDocument projectXml;
+            using (var xmlReader = XmlReader.Create(project.FullName))
             {
-                throw new ArgumentException("Unable to locate the TargetFramework element and/or its parent node.");
+                projectXml = XDocument.Load(xmlReader, LoadOptions.SetLineInfo);
             }
 
-            if (string.IsNullOrWhiteSpace(userSecretsId))
+            var userSecretsNode = projectXml.XPathSelectElement("//UserSecretsId");
+                
+            if (userSecretsNode != null)
             {
-                userSecretsId = CreateUserSecretsId(projectXml, propGroupNode, project);
+                return userSecretsNode.Value;
             }
 
+            var targetFrameworkNode = projectXml.XPathSelectElement("//TargetFramework");
+
+            if (targetFrameworkNode == null)
+            {
+                throw new ApplicationException("Unable to locate the <TargetFramework> node in the project file!");
+            }
+
+            var linePosition = ((IXmlLineInfo) targetFrameworkNode).LinePosition;
+
+            var userSecretsId = Guid.NewGuid().ToString();
+            
+            userSecretsNode = new XElement("UserSecretsId", userSecretsId);
+            targetFrameworkNode.AddAfterSelf(userSecretsNode);
+            targetFrameworkNode.AddAfterSelf(new XText(new string(' ', linePosition - 2)));
+            targetFrameworkNode.AddAfterSelf(Environment.NewLine);
+            
+            var xmlSettings = new XmlWriterSettings
+            {
+                OmitXmlDeclaration = true
+            };
+
+            using (var xmlWriter = XmlWriter.Create(project.FullName, xmlSettings))
+            {
+                projectXml.Save(xmlWriter);
+            }
+            
             return userSecretsId;
         }
 
@@ -112,33 +138,6 @@ namespace BetterUserSecrets.Commands
             }
 
             return secretsFile;
-        }
-
-        private static string CreateUserSecretsId(XmlDocument projectXml, XmlNode propGroupNode, Project project)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            var userSecretsId = Guid.NewGuid().ToString();
-
-            var userSecretsElement = projectXml.CreateElement("UserSecretsId");
-            userSecretsElement.InnerText = userSecretsId;
-            propGroupNode.AppendChild(userSecretsElement);
-
-            var settings = new XmlWriterSettings()
-            {
-                Indent = true,
-                IndentChars = "  ",
-                NewLineHandling = NewLineHandling.None,
-                NewLineChars = Environment.NewLine,
-                OmitXmlDeclaration = true
-            };
-
-            using (var writer = XmlWriter.Create(project.FullName, settings))
-            {
-                projectXml.Save(writer);
-            }
-
-            return userSecretsId;
         }
     }
 }
