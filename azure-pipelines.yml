@@ -31,7 +31,7 @@ steps:
 
 - task: PublishVSExtension@1
   inputs:
-    connectedServiceName: 'Visual Studio Marketplace - CalvinAAllen'
+    connectedServiceName: 'VS Marketplace'
     vsixFile: './src/bin/$(buildConfiguration)/BetterUserSecrets.vsix'
     manifestFile: './extension.manifest.json'
     publisherId: 'CalvinAAllen'
