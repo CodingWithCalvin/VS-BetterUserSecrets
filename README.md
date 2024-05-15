@@ -1,5 +1,7 @@
 # Better User Secrets
 
+A Visual Studio extension that adds a right-click context menu command that allows you to open manage your local user secrets for any project type - not just Web projects, which is the default Visual Studio behavior.
+
 ## License
 [![License - MIT](https://img.shields.io/github/license/CodingWithCalvin/VS-BetterUserSecrets?style=for-the-badge)](https://img.shields.io/github/license/CodingWithCalvin/VS-BetterUserSecrets?style=for-the-badge)
 

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="d7496248-7dc7-4b20-b697-d4965920f227" Version="1.0" Language="en-US" Publisher="Calvin A. Allen" />
+        <Identity Id="VS-BetterUserSecrets" Version="1.0" Language="en-US" Publisher="Coding With Calvin" />
         <DisplayName>Better User Secrets</DisplayName>
-        <Description xml:space="preserve">This extension allows you to manage User Secrets for any .NET Standard / .NET Core project type.  It exists because, by default, Visual Studio only allows management against Web projects - even though it works on others!This extension allows you to manage</Description>
-        <MoreInfo>https://github.com/CalvinAllen/better-user-secrets</MoreInfo>
-        <License>Resources\LICENSE</License>
-        <Icon>Resources\Icon.png</Icon>
+        <Description xml:space="preserve">This extension adds a right-click context menu command that allows you to open manage your local user secrets for any project type - not just Web projects, which is the default Visual Studio behavior.</Description>
+        <MoreInfo>https://github.com/CodingWithCalvin/VS-BetterUserSecrets</MoreInfo>
+        <License>resources\LICENSE</License>
+        <Icon>resources\Icon.png</Icon>
         <Tags>coding, other, programming languages</Tags>
     </Metadata>
     <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />

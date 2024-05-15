@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -12,12 +10,12 @@ using EnvDTE80;
 using Microsoft;
 using Microsoft.VisualStudio.Shell;
 
-namespace BetterUserSecrets.Commands
+namespace CodingWithCalvin.BetterUserSecrets.Commands
 {
     internal sealed class BetterUserSecretsCommand
     {
         private readonly Package _package;
-        
+
         public static BetterUserSecretsCommand Instance { get; private set; }
         private IServiceProvider ServiceProvider => this._package;
 
@@ -25,7 +23,8 @@ namespace BetterUserSecrets.Commands
         {
             this._package = package;
 
-            var commandService = (OleMenuCommandService)ServiceProvider.GetService(typeof(IMenuCommandService));
+            var commandService = (OleMenuCommandService)
+                ServiceProvider.GetService(typeof(IMenuCommandService));
 
             if (commandService == null)
             {
@@ -54,7 +53,7 @@ namespace BetterUserSecrets.Commands
                 var userSecretsId = GetOrUpdateProject(service);
 
                 var secretsFile = GetOrCreateSecretsFile(userSecretsId, service);
-                
+
                 service.ItemOperations.OpenFile(secretsFile);
             }
             catch (Exception ex)
@@ -83,7 +82,7 @@ namespace BetterUserSecrets.Commands
             }
 
             var userSecretsNode = projectXml.XPathSelectElement("//UserSecretsId");
-                
+
             if (userSecretsNode != null)
             {
                 return userSecretsNode.Value;
@@ -93,28 +92,27 @@ namespace BetterUserSecrets.Commands
 
             if (targetFrameworkNode == null)
             {
-                throw new ApplicationException("Unable to locate the <TargetFramework> node in the project file!");
+                throw new ApplicationException(
+                    "Unable to locate the <TargetFramework> node in the project file!"
+                );
             }
 
-            var linePosition = ((IXmlLineInfo) targetFrameworkNode).LinePosition;
+            var linePosition = ((IXmlLineInfo)targetFrameworkNode).LinePosition;
 
             var userSecretsId = Guid.NewGuid().ToString();
-            
+
             userSecretsNode = new XElement("UserSecretsId", userSecretsId);
             targetFrameworkNode.AddAfterSelf(userSecretsNode);
             targetFrameworkNode.AddAfterSelf(new XText(new string(' ', linePosition - 2)));
             targetFrameworkNode.AddAfterSelf(Environment.NewLine);
-            
-            var xmlSettings = new XmlWriterSettings
-            {
-                OmitXmlDeclaration = true
-            };
+
+            var xmlSettings = new XmlWriterSettings { OmitXmlDeclaration = true };
 
             using (var xmlWriter = XmlWriter.Create(project.FullName, xmlSettings))
             {
                 projectXml.Save(xmlWriter);
             }
-            
+
             return userSecretsId;
         }
 
