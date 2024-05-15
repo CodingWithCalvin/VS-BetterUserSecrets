@@ -13,6 +13,6 @@ namespace CodingWithCalvin.BetterUserSecrets
         public const string Language = "en-US";
         public const string Version = "1.0";
         public const string Author = "Coding With Calvin";
-        public const string Tags = "coding, other, programming languages";
+        public const string Tags = "secrets, user-secrets";
     }
 }

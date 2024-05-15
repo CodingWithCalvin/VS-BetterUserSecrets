@@ -6,8 +6,9 @@
         <Description xml:space="preserve">This extension adds a right-click context menu command that allows you to open manage your local user secrets for any project type - not just Web projects, which is the default Visual Studio behavior.</Description>
         <MoreInfo>https://github.com/CodingWithCalvin/VS-BetterUserSecrets</MoreInfo>
         <License>resources\LICENSE</License>
-        <Icon>resources\Icon.png</Icon>
-        <Tags>coding, other, programming languages</Tags>
+        <Icon>resources\logo.png</Icon>
+        <PreviewImage>resources\logo.png</PreviewImage>
+        <Tags>secrets, user-secrets</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
