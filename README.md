@@ -5,12 +5,15 @@
 
 ## Build Status
 
+TBD
+
 ## Deployment Status
+
+TBD
 
 ## Marketplace Status
 
-[![Marketplace Installations](https://img.shields.io/visual-studio-marketplace/i/CalvinAAllen.BetterUserSecrets?style=for-the-badge)](https://img.shields.io/visual-studio-marketplace/i/CalvinAAllen.BetterUserSecrets?style=for-the-badge) [![Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/CalvinAAllen.BetterUserSecrets?style=for-the-badge)](https://img.shields.io/visual-studio-marketplace/d/CalvinAAllen.BetterUserSecrets?style=for-the-badge)
-[![Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/CalvinAAllen.BetterUserSecrets?style=for-the-badge)](https://img.shields.io/visual-studio-marketplace/v/CalvinAAllen.BetterUserSecrets?style=for-the-badge) [![Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/CalvinAAllen.BetterUserSecrets?style=for-the-badge)](https://img.shields.io/visual-studio-marketplace/r/CalvinAAllen.BetterUserSecrets?style=for-the-badge)
+TBD
 
 ## Description
 
